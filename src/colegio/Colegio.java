@@ -1,7 +1,4 @@
-
-
 package colegio;
-
 
 public class Colegio {
     private String dueno;
@@ -13,6 +10,11 @@ public class Colegio {
     private int numeroDeSalones;
     private int numeroDeMaterias;
     private int numeroDeProfesores;
+    
+    //Atributos de composicion//
+    
+    private Deberes tareas = null;
+    private Utiles cuadernos;
 
     public Colegio(
             String dueno, 
@@ -32,12 +34,25 @@ public class Colegio {
         this.numeroDeSalones = numeroDeSalones;
         this.numeroDeMaterias = numeroDeMaterias;
         this.numeroDeProfesores = numeroDeProfesores;
+        this.cuadernos = new Utiles("Cuadernos, Guias, Lapicero/Lapiz", true);
     }
-            
-    
-    
-   
 
+    public Deberes getTareas() {
+        return tareas;
+    }
+
+    public void setTareas(Deberes tareas) {
+        this.tareas = tareas;
+    }
+
+    public Utiles getCuadernos() {
+        return cuadernos;
+    }
+
+    public void setCuadernos(Utiles cuadernos) {
+        this.cuadernos = cuadernos;
+    }
+ 
     public void infoColegio(){
     this.numeroEstudiantes += 3;
     this.privado = false;
@@ -108,21 +123,22 @@ public class Colegio {
                 22, 
                 13, 
                 24); 
-        System.out.println("La dueña del Colegio es " + colegio1.getDueno());
-        System.out.println("el nombre del colegio es " + colegio1.getNombre());
-        System.out.println("Hay " + colegio1.getNumeroEstudiantes() + " estudiantes en el colegio");
-        System.out.println("Hay una cantidad de " + colegio1.getNumeroDeSalones() + " salones en el colegio");
-        System.out.println("Se enseñan  " + colegio1.getNumeroDeMaterias() + " materias en el colegio");
-        System.out.println("Colegio privado:  " + colegio1.getPrivado());
-        System.out.println("El colegio es calendario A:  " + colegio1.getPrivado());
         
-        colegio1.infoColegio();
+        Deberes escolares = new Deberes(
+                "Calculo, Programacion y Quimica", 
+                true, 
+                11);
         
-        System.out.println("Hay " + colegio1.getNumeroEstudiantes() + " estudiantes en el colegio");
-        System.out.println("Colegio privado:  " + colegio1.getPrivado());
-        System.out.println("El colegio es calendario A:  " + colegio1.getPrivado());
-
+        colegio1.setTareas(escolares);
+        
+        System.out.println(String.format("Las materias en las que hay tareas son: "
+                + "%s", escolares.getMateria()));
+        System.out.println(String.format("La tarea ha sido asignada: %b",
+                escolares.getAsignado()));
+        System.out.println(String.format("El grado escolar en el que se encuentra"
+                + " el estudiante es: %d", escolares.getGradoEscolar()));
     }
+    
 }
 
   
